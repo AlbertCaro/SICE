@@ -21,7 +21,7 @@
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <script src="{{ asset('assets/js/messages.js') }}"></script>
 </head>
 
@@ -29,7 +29,7 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg bg-dark" color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{ route('index') }}">Sistema de Información de la Comunidad Estudiantil </a>
+            <a class="navbar-brand" href="{{ route('index') }}">SICE CUValles </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
@@ -127,17 +127,16 @@
     </div>
 </footer>
 <!--   Core JS Files   -->
-<script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap-material-design.js')}}"></script>
+<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-material-design.js') }}"></script>
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-<script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
+<script src="{{ asset('assets/js/plugins/moment.min.js') }}"></script>
 <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src="{{asset('assets/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{ asset('assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
 <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>
+<script src="{{ asset('assets/js/plugins/nouislider.min.js') }}"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-<script src="{{asset('assets/js/material-kit.js?v=2.0.2')}}"></script>
-<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-<script src="{{asset('assets/assets-for-demo/js/material-kit-demo.js')}}"></script>
+<script src="{{ asset('assets/js/material-kit.js?v=2.0.2')}} "></script>
+@include('sweetalert::alert')
 </body>
 </html>

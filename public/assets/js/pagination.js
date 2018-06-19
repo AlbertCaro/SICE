@@ -12,21 +12,23 @@ function changePage(obj, e) {
     })
 }
 
+var currentUrl = table;
+
 function loadTable(e, doSearch) {
     e.preventDefault();
-    var url;
-    if (doSearch)
-        url = search+$('#search').val()+'/';
+    var param = $('#search').val();
+    if (doSearch && param !== "")
+        currentUrl = search+param+'/';
     else
-        url = table;
+        currentUrl = table;
     $.ajaxSetup({
         headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
     });
     $.ajax({
-        url : url,
+        url : currentUrl,
         method : 'get'
     }).done(function (response) {
-        table = url;
+        currentUrl = search;
         $('#content').html(response);
         if (doSearch)
             location.hash = $('#search').val();

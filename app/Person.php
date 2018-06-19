@@ -9,6 +9,7 @@ class Person extends Model
     public $timestamps = false;
     protected $table = "persona";
     protected $primaryKey = "codigo";
+    public $incrementing = false;
 
     protected $fillable = [
         'codigo',
