@@ -5,10 +5,10 @@
 
 @section('content')
     <script type="text/javascript">
-        var table = '{{ route('user.table') }}';
-        var search = '/user_search/';
+        let table = '{{ route('user.table') }}';
+        let search = '/user_search/';
     </script>
-    <div class="page-header header-filter" data-parallax="true" style=" background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); ">
+    <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{ asset('assets/img/kit/cita2.jpg') }}); ">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

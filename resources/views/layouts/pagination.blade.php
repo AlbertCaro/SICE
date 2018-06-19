@@ -14,9 +14,7 @@ if ($paginator->lastPage() > 13) {
     $first = 1;
     $last = $paginator->lastPage();
 }
-
 @endphp
-
 
 @if ($paginator->lastPage() > 1)
     <ul class="pagination justify-content-center">

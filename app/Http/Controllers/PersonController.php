@@ -91,7 +91,8 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $person = Person::findOrFail($id);
+        $person->delete();
     }
 
     public function table()

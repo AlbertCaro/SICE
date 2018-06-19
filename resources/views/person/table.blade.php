@@ -27,13 +27,11 @@
                         <i class="material-icons">edit</i>
                     </button>
                 </a>
-                <a href="">
+                <a href="#" onclick="confirmDelete(event, '{{ $person->fullName }}', '{{ route('student.destroy', $person->codigo) }}')">
                     <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-fab" title="Eliminar">
                         <i class="material-icons">delete_forever</i>
                     </button>
                 </a>
-                <form style="display: none;" action="{{ route('student.destroy', $person->codigo) }}" id="delete_{{ $person->codigo }}">
-                </form>
             </td>
         </tr>
     @empty
@@ -47,7 +45,7 @@
     <tfoot>
     <tr>
         <td class="text-center" colspan="3">
-            {{ $people->links('layouts.pagination') }}
+            {{ $people->render('layouts.pagination') }}
         </td>
     </tr>
     </tfoot>

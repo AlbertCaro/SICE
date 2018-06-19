@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $person)
+@section('title', $user)
 @section('type', 'profile-page sidebar-collapse')
 
 @section('content')

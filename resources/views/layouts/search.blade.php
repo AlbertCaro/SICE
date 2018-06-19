@@ -10,38 +10,8 @@
         </div>
         <div class="form-group col-1">
             <br>
-            <input type="submit" class="btn btn-primary btn-sm" value="Buscar" onclick="searchUser(event);">
+            <input type="submit" class="btn btn-primary btn-sm" value="Buscar" onclick="loadTable(event, true);">
         </div>
     </div>
 </form>
-<script type="text/javascript">
-    function changePage(obj, e) {
-        e.preventDefault();
-        var page = $(obj).attr('href').split('page=')[1];
-        $.ajax({
-            url : table+'?page='+page
-        }).done(function (response) {
-            $('#content').html(response);
-            location.hash = page;
-            $('html, body').animate({
-                scrollTop: $("#top").offset().top
-            }, 250)
-        })
-    }
-
-    function searchUser(e) {
-        e.preventDefault();
-        var url = search+$('#search').val()+'/';
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        });
-        $.ajax({
-            url : url,
-            method : 'get'
-        }).done(function (response) {
-            table = url;
-            $('#content').html(response);
-            location.hash = $('#search').val();
-        })
-    }
-</script>
+<script src="{{ asset('assets/js/pagination.js') }}"></script>

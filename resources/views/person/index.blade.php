@@ -5,8 +5,8 @@
 
 @section('content')
     <script type="text/javascript">
-        var table = '{{ route('person.table') }}';
-        var search = '/person_search/';
+        let table = '{{ route('person.table') }}';
+        let search = '/person_search/';
     </script>
     <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); ">
         <div class="container">

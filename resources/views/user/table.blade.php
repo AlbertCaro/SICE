@@ -27,13 +27,11 @@
                         <i class="material-icons">edit</i>
                     </button>
                 </a>
-                <a href="">
+                <a href="#" onclick="confirmDelete(event, '{{ $user->name }}', '{{ route('user.destroy', $user->id) }}')">
                     <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-fab" title="Eliminar">
                         <i class="material-icons">delete_forever</i>
                     </button>
                 </a>
-                <form style="display: none;" action="{{ route('user.destroy', $user->id) }}" id="delete_{{ $user->id }}">
-                </form>
             </td>
         </tr>
     @empty
