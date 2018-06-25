@@ -28,7 +28,7 @@
                     </button>
                 </a>
                 <a href="#" onclick="confirmDelete(event, '{{ $user->name }}', '{{ route('user.destroy', $user->id) }}')">
-                    <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-fab" title="Eliminar">
+                    <button type="button" class="btn btn-danger btn-fab" title="Eliminar">
                         <i class="material-icons">delete_forever</i>
                     </button>
                 </a>

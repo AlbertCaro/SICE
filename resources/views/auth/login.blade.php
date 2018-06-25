@@ -4,7 +4,7 @@
 @section('type', 'signup-page')
 
 @section('content')
-    <div class="page-header header-filter" filter-color="purple" style="background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); background-size: cover; background-position: top center;">
+    <div class="page-header header-filter" filter-color="purple" style="background-image: url('{{ asset('assets/img/kit/cita2.jpg') }}'); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
@@ -15,29 +15,17 @@
                                 <div class="col-md-7 ml-auto mr-auto">
                                     <form class="form" method="POST" action="{{ route('login') }}">
                                         {{ csrf_field() }}
-                                        <div class="form-group @if($errors->has('password')) {{ "has-danger" }} @endif text-lg-left">
+                                        <div class="form-group {!! $errors->first('email','has-danger') !!} text-lg-left">
                                             <label for="email" class="bmd-label-floating">Correo eléctronico</label>
                                             <input type="email" class="form-control" id="email" name="email">
-                                            @if($errors->has('email'))
-                                                <span class="form-control-feedback">
-                                                    <i class="material-icons">clear</i>
-                                                </span>
-                                                <span class="bmd-label">Ha dejado el campo vacío</span>
-                                            @else
-                                                <span class="bmd-help">No compartiremos su email con nadie.</span>
-                                            @endif
+                                            <span class="form-control-feedback"><i class="material-icons">clear</i></span>
+                                            <small id="namelHelp" class="bmd-label">{!! $errors->first('email') !!}</small>
                                         </div>
-                                        <div class="form-group @if($errors->has('password')) {{ "has-danger" }} @endif text-lg-left">
+                                        <div class="form-group {!! $errors->first('password','has-danger') !!} text-lg-left">
                                             <label for="password" class="bmd-label-floating">Contraseña</label>
                                             <input type="password" class="form-control" id="password" name="password">
-                                            @if($errors->has('email'))
-                                                <span class="form-control-feedback">
-                                                    <i class="material-icons">clear</i>
-                                                </span>
-                                                <span class="bmd-label">Ha dejado el campo vacío</span>
-                                            @else
-                                            <!--span class="bmd-help">Contraseña 110% segura.</span-->
-                                            @endif
+                                            <span class="form-control-feedback"><i class="material-icons">clear</i></span>
+                                            <small id="namelHelp" class="bmd-label">{!! $errors->first('password') !!}</small>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">

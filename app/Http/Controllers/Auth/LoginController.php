@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,6 +41,19 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        return redirect()->route('index')->with('toast', "Bienvenido/a {$user->name}.");
+        toast("Bienvenido/a {$user->name}", 'info', 'top');
+        return redirect()->route('index');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        toast('Se ha cerrado la sesión.', 'info', 'top');
+        return redirect()->route('index');
+    }
+
+    protected function buildFailedValidationResponse(Request $request, array $errors)
+    {
+        toast('Verifique sus credenciales.', 'error', 'top');
     }
 }

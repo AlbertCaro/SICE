@@ -8,7 +8,8 @@ const toast = swal.mixin({
     toast: true,
     position: 'top',
     showConfirmButton: false,
-    timer: 3000
+    timer: 3000,
+    showCloseButton: true
 });
 
 function confirmDelete(e, name, url) {
@@ -28,7 +29,7 @@ function confirmDelete(e, name, url) {
                 url: url,
             }).done(function () {
                 toast({
-                    title: 'Eliminado correctamente',
+                    title: 'Eliminado correctamente.',
                     type: 'success'
                 });
                 loadTable(e, false);
@@ -41,19 +42,4 @@ function confirmDelete(e, name, url) {
             })
         }
     })
-}
-
-function logout() {
-    toast({
-        type: 'info',
-        title: 'Se ha cerrado la sesión',
-        timer: 1500,
-    }).then(function () {
-        $.ajax({
-            type: 'post',
-            url: '/logout',
-        }).done(function () {
-            window.location.replace('/');
-        });
-    });
 }

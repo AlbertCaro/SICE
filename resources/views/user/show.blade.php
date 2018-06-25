@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $user)
+@section('title', $user->name)
 @section('type', 'profile-page sidebar-collapse')
 
 @section('content')
@@ -21,16 +21,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="description text-center">
-                    <p>
-                        Usuario creado el: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/>
-                        Última modificación el: {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/><br/>
-                        <a href="{{ route('user.edit', $user->id) }}">
-                            <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-success" title="Editar">
-                                <i class="material-icons">edit</i>
-                            </button>
-                        </a>
-                    </p>
+                <div id="content">
+                    <div class="description text-center">
+                        <p>
+                            Usuario creado el: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/>
+                            Última modificación el: {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/><br/>
+                            <a href="{{ route('user.edit', $user->id) }}">
+                                <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-success" title="Editar">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                            </a>
+                        </p>
+                    </div>
                 </div>
                 <br>
             </div>

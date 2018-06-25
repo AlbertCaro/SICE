@@ -28,4 +28,12 @@ class PersonalData extends Model
     public function person() {
         return $this->belongsTo(Person::class, 'persona_codigo', 'codigo');
     }
+
+    public function career() {
+        return $this->belongsTo(Career::class, 'carrera_id', 'id');
+    }
+
+    public function getDomicilioAttribute($value) {
+        return utf8_decode($value);
+    }
 }

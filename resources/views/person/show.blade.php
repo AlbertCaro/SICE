@@ -12,11 +12,13 @@
                     <div class="col-md-10 ml-auto mr-auto">
                         <div class="profile">
                             <div class="avatar">
-                                <img src="{{ asset('assets/img/kit/faces/avatar.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                <img id="photo" src="http://www.cuvalles.udg.mx/spec/Fotos/{{ $person->fullName }}.jpg"
+                                     class="img-raised rounded-circle img-fluid"
+                                     style="object-fit: cover; object-position: center; height: 160px; width: 160px">
                             </div>
                             <div class="name">
                                 <h3 class="title">{{ $person->fullName }}</h3>
-                                <h6>{{ $career }}</h6>
+                                <h6>{{ $person->personalData->career->carrera }}</h6>
                             </div>
                         </div>
                     </div>
@@ -29,6 +31,10 @@
                                     <i class="material-icons">person</i>
                                 </div>
                                 <h4 class="info-title text-center">Información del alumno:</h4>
+                                <h6>Fecha de nacimiento:</h6>
+                                <p>
+                                    {{ \Carbon\Carbon::make($person->fec_nac)->format('d/m/Y') }}
+                                </p>
                                 <h6>Estado civil:</h6>
                                 <p>
                                     {{ $person->personalData->estado_civil }}
@@ -37,13 +43,21 @@
                                 <p>
                                     {{ $person->personalData->actividad_economica }}
                                 </p>
+                                <h6>Sexo:</h6>
+                                <p>
+                                    {{ $person->sexo }}
+                                </p>
                                 <h6>Religión:</h6>
                                 <p>
                                     {{ $person->personalData->religion }}
                                 </p>
-                                <h6>Interrogatorio:</h6>
+                                <h6>Escolaridad:</h6>
                                 <p>
-                                    {{ $person->personalData->interrogatorio }}
+                                    {{ $person->personalData->escolaridad }}
+                                </p>
+                                <h6>Tipo:</h6>
+                                <p>
+                                    {{ $person->tipo }}
                                 </p>
                             </div>
                         </div>

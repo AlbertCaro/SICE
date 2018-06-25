@@ -53,10 +53,7 @@ class PersonController extends Controller
     public function show($id)
     {
         $person = Person::findOrFail($id);
-       // dd($person->personalData);
-        //$data = PersonalData::where('persona_codigo', '=', "{$id}")->firstOrFail();
-        $career = Career::findOrFail($person->personalData->carrera_id)->carrera;
-        return view('person.show', compact('person', 'career'));
+        return view('person.show', compact('person'));
     }
 
     /**
@@ -92,6 +89,9 @@ class PersonController extends Controller
     public function destroy($id)
     {
         $person = Person::findOrFail($id);
+
+        $data = $person->personalData;
+        $data->delete();
         $person->delete();
     }
 

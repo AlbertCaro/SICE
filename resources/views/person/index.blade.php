@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="title">Usuarios</h1>
+                    <h1 class="title">Estudiantes</h1>
                 </div>
             </div>
         </div>

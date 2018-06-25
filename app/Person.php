@@ -23,10 +23,26 @@ class Person extends Model
     ];
 
     public function getFullNameAttribute() {
-        return $this->nombre.' '.$this->apaterno.' '.$this->amaterno;
+        return $this->apaterno.' '.$this->amaterno.' '.$this->nombre;
     }
 
     public function personalData() {
         return $this->hasOne(PersonalData::class, 'persona_codigo', 'codigo');
+    }
+
+    public function getTipoAttribute($value) {
+        switch ($value) {
+            case '1':
+                return 'Estudiante';
+                break;
+            case '2':
+                return 'Académico';
+                break;
+            case '3':
+                return 'Administrativo';
+                break;
+            default:
+                return 'Tipo no definido';
+        }
     }
 }

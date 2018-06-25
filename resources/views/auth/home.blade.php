@@ -4,15 +4,7 @@
 @section('type', 'landing-page')
 
 @section('content')
-    @if(session('toast'))
-    <script type="text/javascript">
-        toast({
-            type: 'success',
-            title: '{{ session('toast') }}'
-        });
-    </script>
-    @endif
-    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('../assets/img/kit/cita.jpg'); ">
+    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('{{ asset('assets/img/kit/cita.jpg') }}'); ">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

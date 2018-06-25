@@ -12,4 +12,12 @@ class Career extends Model
     public $fillable = [
         'carrera'
     ];
+
+    public function personalData() {
+        return $this->hasOne(PersonalData::class, 'carrera_id', 'id');
+    }
+
+    public function getCareers() {
+
+    }
 }

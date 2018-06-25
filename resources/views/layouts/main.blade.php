@@ -14,14 +14,17 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="{{asset('assets/css/material-kit.css?v=2.0.2')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/material-kit.css?v=2.0.2') }}">
     <script src="{{ asset("assets/js/core/jquery.min.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins/nouislider.min.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins/bootstrap-datetimepicker.min.js") }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         });
     </script>
-    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.22.2/dist/sweetalert2.all.js"></script>
     <script src="{{ asset('assets/js/messages.js') }}"></script>
 </head>
 
@@ -83,7 +86,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">{{ auth()->user()->name }}</h6>
                         <a href="{{ route('user.show', auth()->id()) }}" class="dropdown-item">Mi perfil</a>
-                        <a onclick="logout();" href="#" class="dropdown-item">Cerrar sesión</a>
+                        <a href="{{ route('logout') }}" class="dropdown-item">Cerrar sesión</a>
                     </div>
                 </li>
                 @endif
@@ -126,6 +129,7 @@
         </div>
     </div>
 </footer>
+@include('sweetalert::alert')
 <!--   Core JS Files   -->
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-material-design.js') }}"></script>
@@ -137,6 +141,5 @@
 <script src="{{ asset('assets/js/plugins/nouislider.min.js') }}"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="{{ asset('assets/js/material-kit.js?v=2.0.2')}} "></script>
-@include('sweetalert::alert')
 </body>
 </html>
