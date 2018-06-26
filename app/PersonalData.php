@@ -25,15 +25,57 @@ class PersonalData extends Model
         'email',
     ];
 
-    public function person() {
+    public function setDomicilioAttribute($value)
+    {
+        $this->attributes['domicilio'] = utf8_encode($value);
+    }
+
+    public function getDomicilioAttribute($value)
+    {
+        return utf8_decode($value);
+    }
+
+    public function person()
+    {
         return $this->belongsTo(Person::class, 'persona_codigo', 'codigo');
     }
 
-    public function career() {
+    public function career()
+    {
         return $this->belongsTo(Career::class, 'carrera_id', 'id');
     }
 
-    public function getDomicilioAttribute($value) {
-        return utf8_decode($value);
+    public static function getEstadosCiviles()
+    {
+        return [
+            '' => 'Seleccione una opción...',
+            'Soltero' => 'Soltero',
+            'Casado' => 'Casado',
+            'Divorciado' => 'Divorciado',
+            'Viudo' => 'Viudo',
+            'Unión libre' => 'Unión libre',
+        ];
+    }
+
+    public static function getEscolaridades()
+    {
+        return [
+            '' => 'Seleccione una opción...',
+            'Primaria' => 'Primaria',
+            'Secundaria' => 'Secundaria',
+            'Preparatoria' => 'Preparatoria',
+            'Licenciatura' => 'Licenciatura',
+            'Maestría' => 'Maestría',
+            'Doctorado' => 'Doctorado',
+        ];
+    }
+
+    public static function getActividadesEconomicas()
+    {
+        return [
+            '' => 'Seleccione una opción...',
+            'Empleado' => 'Empleado',
+            'Otra' => 'Otra',
+        ];
     }
 }

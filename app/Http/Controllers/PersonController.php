@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Career;
+use App\Http\Requests\PersonRequest;
 use App\Person;
 use App\PersonalData;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -75,9 +77,33 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonRequest $request, $id)
     {
         $person = Person::findOrFail($id);
+        $personalData = $person->personalData;
+        $person->update([
+            'nombre' => $request['nombre'],
+            'apaterno' => $request['apaterno'],
+            'amaterno' => $request['amaterno'],
+            'fec_nac' => $request['fec_nac'],
+            'tipo' => $request['tipo'],
+            'sexo' => $request['sexo'],
+        ]);
+        $personalData->update([
+            'estado_civil' => $request['estado_civil'],
+            'religion' => $request['religion'],
+            'email' => $request['email'],
+            'telefono' => $request['telefono'],
+            'escolaridad' => $request['escolaridad'],
+            'carrera_id' => $request['carrera_id'],
+            'domicilio' => $request['domicilio'],
+            'actividad_economica' => $request['actividad_economica'],
+            'lug_nac' => $request['lug_nac'],
+            'lug_res' => $request['lug_res'],
+        ]);
+
+        toast('Actualizado correctamente.', 'success', 'top');
+        return redirect()->route('student.show', compact('id'));
     }
 
     /**

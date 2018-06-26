@@ -33,7 +33,7 @@
                                 <h4 class="info-title text-center">Información del alumno:</h4>
                                 <h6>Fecha de nacimiento:</h6>
                                 <p>
-                                    {{ \Carbon\Carbon::make($person->fec_nac)->format('d/m/Y') }}
+                                    {{ $person->fec_nac }}
                                 </p>
                                 <h6>Estado civil:</h6>
                                 <p>
@@ -57,7 +57,7 @@
                                 </p>
                                 <h6>Tipo:</h6>
                                 <p>
-                                    {{ $person->tipo }}
+                                    {{ $person->getTipoName() }}
                                 </p>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
@@ -22,16 +23,78 @@ class Person extends Model
         'sexo'
     ];
 
-    public function getFullNameAttribute() {
+    public function setApaternoAttribute($value)
+    {
+        return $this->attributes['apaterno'] = strtoupper($value);
+    }
+
+    public function setAmaternoAttribute($value)
+    {
+        return $this->attributes['amaterno'] = strtoupper($value);
+    }
+
+    public function setNombreAttribute($value)
+    {
+        return $this->attributes['nombre'] = strtoupper($value);
+    }
+
+    public function setFecnacAttribute($value)
+    {
+        return $this->attributes['fec_nac'] = Carbon::make($value)->format('Y-m-d');
+    }
+
+    public function getApaternoAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+
+    public function getAmaternoAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+
+    public function getNombreAttribute($value)
+    {
+        return ucfirst(strtolower($value));
+    }
+
+    public function getFecnacAttribute($value)
+    {
+        return Carbon::make($value)->format('d/m/Y');
+    }
+
+    public function getFullNameAttribute()
+    {
         return $this->apaterno.' '.$this->amaterno.' '.$this->nombre;
     }
 
-    public function personalData() {
+    public function personalData()
+    {
         return $this->hasOne(PersonalData::class, 'persona_codigo', 'codigo');
     }
 
-    public function getTipoAttribute($value) {
-        switch ($value) {
+    public static function getTipos()
+    {
+        return [
+            '' => 'Seleccione una opción...',
+            '1' => 'Estudiante',
+            '2' => 'Académico',
+            '3' => 'Administrativo'
+        ];
+    }
+
+    public static function getSexos()
+    {
+        return [
+            '' => 'Seleccione una opción...',
+            'Hombre' => 'Hombre',
+            'Mujer' => 'Mujer',
+        ];
+    }
+
+    public function getTipoName()
+    {
+        switch ($this->tipo) {
             case '1':
                 return 'Estudiante';
                 break;
