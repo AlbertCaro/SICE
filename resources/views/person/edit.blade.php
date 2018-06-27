@@ -34,7 +34,7 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre"
                                                            value="@if(count($errors)){{ old('nombre') }}@else{{ $person->nombre }}@endif">
                                                     <span class="form-control-feedback"><i class="material-icons">clear</i></span>
-                                                    <small class="bmd-label">{!!$errors->first('name') !!}</small>
+                                                    <small class="bmd-label">{!!$errors->first('nombre') !!}</small>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">

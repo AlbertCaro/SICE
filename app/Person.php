@@ -60,7 +60,10 @@ class Person extends Model
 
     public function getFecnacAttribute($value)
     {
-        return Carbon::make($value)->format('d/m/Y');
+        if (is_null($value))
+            return "N/A";
+        else
+            return Carbon::make($value)->format('d/m/Y');
     }
 
     public function getFullNameAttribute()

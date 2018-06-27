@@ -71,17 +71,17 @@ class UserController extends Controller
     public function update(UserEditRequest $request, $id)
     {
         $data = [
-            'name' => $request['name'],
-            'email' => $request['email'],
+            'name' => $request->name,
+            'email' => $request->email,
         ];
 
-        if (!is_null($request['password']))
+        if (!is_null($request->password))
         {
             $this->validate($request, [
                 'password'=>'required|min:6|max:191|confirmed'
             ]);
             $data = $data + [
-                'password' => bcrypt($request['password'])
+                'password' => bcrypt($request->password)
                 ];
         }
 

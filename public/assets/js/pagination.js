@@ -22,7 +22,9 @@ function loadTable(e, doSearch) {
     else
         currentUrl = table;
     $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
     $.ajax({
         url : currentUrl,

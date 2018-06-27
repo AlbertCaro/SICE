@@ -141,6 +141,7 @@ return [
         'name'                  => 'nombre',
         'username'              => 'usuario',
         'email'                 => 'correo electrónico',
+        'file'                 => 'archivo',
         'first_name'            => 'nombre',
         'last_name'             => 'apellido',
         'password'              => 'contraseña',

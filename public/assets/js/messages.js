@@ -23,6 +23,12 @@ function confirmDelete(e, name, url) {
         cancelButtonText: '<i class="material-icons">thumb_down</i>  Cancelar',
     }).then((result) => {
         if (result.value) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
             $.ajax({
                 data: { '_method' : 'DELETE' },
                 type: 'post',

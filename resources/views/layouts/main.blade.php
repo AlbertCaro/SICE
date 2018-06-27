@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('../img/kit/free/apple-icon.png') }}">
     <link rel="icon" href="{{ asset('../img/kit/free/favicon.png') }}">
@@ -17,13 +18,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/material-kit.css?v=2.0.2') }}">
     <script src="{{ asset("assets/js/core/jquery.min.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/moment.min.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins/transition.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins/collapse.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/nouislider.min.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/bootstrap-datetimepicker.min.js") }}"></script>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        });
-    </script>
     <script src="https://unpkg.com/sweetalert2@7.22.2/dist/sweetalert2.all.js"></script>
     <script src="{{ asset('assets/js/messages.js') }}"></script>
 </head>
@@ -55,6 +53,9 @@
                     <div class="dropdown-menu dropdown-with-icons">
                         <a href="{{ route('student.create') }}" class="dropdown-item">
                             <i class="material-icons">person_add</i> Registrar
+                        </a>
+                        <a href="{{ route('student.import') }}" class="dropdown-item">
+                            <i class="material-icons">cloud_upload</i> Importar
                         </a>
                         <a href="{{ route('student.index') }}" class="dropdown-item">
                             <i class="material-icons">content_paste</i> Consultar

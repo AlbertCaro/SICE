@@ -25,8 +25,10 @@ Route::post('register', ['as' => 'register.create','uses' => 'Auth\RegisterContr
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 Route::get('user_table', ['as' => 'user.table', 'uses' => 'UserController@table']);
 Route::get('user_search/{search}/', ['as' => 'user.search', 'uses' => 'UserController@search']);
-Route::get('person_table', ['as' => 'person.table', 'uses' => 'PersonController@table']);
-Route::get('person_search/{search}/', ['as' => 'person.search', 'uses' => 'PersonController@search']);
+Route::get('person_table', ['as' => 'student.table', 'uses' => 'PersonController@table']);
+Route::get('person_search/{search}/', ['as' => 'student.search', 'uses' => 'PersonController@search']);
+Route::get('/person/import', ['as' => 'student.import', 'uses' => 'PersonController@import']);
+Route::post('/person/import/do', ['as' => 'student.importing', 'uses' => 'PersonController@importing']);
 
 Route::get('message/done', ['as' => 'message.done', function () {
     return view('messages.done');
