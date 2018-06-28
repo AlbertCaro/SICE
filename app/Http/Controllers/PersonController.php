@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Career;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\ImportRequest;
 use App\Http\Requests\PersonRequest;
 use App\Person;
 use App\PersonalData;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel;
 
 class PersonController extends ApiController
 {
@@ -177,6 +173,9 @@ class PersonController extends ApiController
     public function importing(ImportRequest $request)
     {
         $GLOBALS['people'] = array();
+        $GLOBALS['codigo'] = 0;
+        $GLOBALS['carrera_id'] = 0;
+        $GLOBALS['exist'] = 0;
         $excel = App::make('excel');
         $excel->load($request->file, function ($reader)
         {
@@ -184,7 +183,8 @@ class PersonController extends ApiController
             $rows->each(function ($row)
             {
                 $exist = Person::find($row->codigo);
-                if (is_null($exist))
+
+                if (is_null($exist) && $row->codigo !== "" && $row->carrera !== "")
                 {
                     $person = Person::create([
                         'codigo' => $row->codigo,
@@ -198,12 +198,32 @@ class PersonController extends ApiController
                     ]);
                     array_push($GLOBALS['people'], $person);
                 }
+                else
+                {
+                    if (!is_null($exist))
+                    {
+                        $GLOBALS['exist']++;
+                    }
+                    if ($row->codigo === "")
+                    {
+                        $GLOBALS['codigo']++;
+                    }
+                    if ($row->carrera === "")
+                    {
+                        $GLOBALS['carrera_id']++;
+                    }
+                }
             });
         });
+
         $people = new LengthAwarePaginator(collect($GLOBALS['people']), count($GLOBALS['people']), 15);
+        $error_codigo = $GLOBALS['codigo'];
+        $error_carrera = $GLOBALS['carrera_id'];
+        $error_exist = $GLOBALS['exist'];
         $imported = true;
+
         toast('Datos importados con éxito.', 'success', 'top');
-        return view('person.imported', compact('people', 'imported'));
+        return view('person.imported', compact('people', 'imported', 'error_codigo', 'error_carrera', 'error_exist'));
     }
 
     protected function buildFailedValidationResponse(Request $request, array $errors)
@@ -211,10 +231,9 @@ class PersonController extends ApiController
         toast('Verifique la información ingresada.', 'error', 'top');
     }
 
-    public function obtenerTodosApi(){
-        $personas = Person::all();
-
-
-        return $this->showAll($personas);
+    public function getAllAPI()
+    {
+        $people = Person::all();
+        return $this->showAll($people);
     }
 }

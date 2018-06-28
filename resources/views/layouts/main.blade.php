@@ -58,7 +58,7 @@
                             <i class="material-icons">cloud_upload</i> Importar
                         </a>
                         <a href="{{ route('student.index') }}" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Consultar
+                            <i class="material-icons">list</i> Consultar
                         </a>
                     </div>
                 </li>
@@ -71,14 +71,17 @@
                             <i class="material-icons">person_add</i> Registrar
                         </a>
                         <a href="{{ route('user.index') }}" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Consultar
+                            <i class="material-icons">list</i> Consultar
                         </a>
                     </div>
                 </li>
                 <li class="dropdown nav-item">
                     <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile-photo-small">
-                            <img src="{{ asset('assets/img/kit/faces/avatar.jpg') }}" alt="Circle Image" class="rounded-circle img-fluid">
+                            <img src="http://www.cuvalles.udg.mx/spec/Fotos/{{ auth()->user()->name }}.jpg"
+                                 onerror="this.src='{{ asset('assets/img/blank_user.png') }}';"
+                                 style="object-fit: cover; object-position: center; height: 40px; width: 40px"
+                                 alt="Circle Image" class="rounded-circle img-fluid">
                         </div>
                         <div class="ripple-container">
 
@@ -123,10 +126,7 @@
             </ul>
         </nav>
         <div class="copyright pull-right">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script> Universidad de Guadalajara. Todos los derechos reservados.
+            &copy; {{ \Carbon\Carbon::make(\Carbon\Carbon::now())->format('Y') }} Universidad de Guadalajara. Todos los derechos reservados.
         </div>
     </div>
 </footer>

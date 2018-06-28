@@ -13,6 +13,7 @@
                         <div class="profile">
                             <div class="avatar">
                                 <img id="photo" src="http://www.cuvalles.udg.mx/spec/Fotos/{{ $person->fullName }}.jpg"
+                                     onerror="this.src='{{ asset('assets/img/blank_user.png') }}';"
                                      class="img-raised rounded-circle img-fluid"
                                      style="object-fit: cover; object-position: center; height: 160px; width: 160px">
                             </div>

@@ -17,7 +17,6 @@
                                           method="post" action="{{ route('student.importing') }}">
                                         {{ csrf_field() }}
                                         {{ method_field('POST') }}
-                                        <input type="hidden" name="date" value="{{ \Carbon\Carbon::now() }}">
                                         <div class="form-group form-file-upload form-file-multiple text-left {!! $errors->first('file','has-danger') !!}">
                                             <input type="file" id="file" name="file" class="inputFileHidden">
                                             <div class="input-group">

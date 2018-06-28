@@ -1,4 +1,6 @@
-<h5 class="info-title">{{ "Se ha(n) obtenido {$people->total()} resultado(s)." }}</h5>
+@if(!isset($imported))
+<h4 class="info-title">{{ "Se ha(n) obtenido {$people->total()} resultado(s)." }}</h4>
+@endif
 <table class="table">
     <thead>
     <tr>

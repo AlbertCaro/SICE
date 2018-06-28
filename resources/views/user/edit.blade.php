@@ -12,7 +12,10 @@
                     <div class="col-md-10 ml-auto mr-auto">
                         <div class="profile">
                             <div class="avatar">
-                                <img src="{{ asset('assets/img/kit/faces/avatar.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                <img id="photo" src="http://www.cuvalles.udg.mx/spec/Fotos/{{ $user->name }}.jpg"
+                                     onerror="this.src='{{ asset('assets/img/blank_user.png') }}';"
+                                     class="img-raised rounded-circle img-fluid"
+                                     style="object-fit: cover; object-position: center; height: 160px; width: 160px">
                             </div>
                             <div class="name">
                                 <h3 class="title">{{ $user->name }}</h3>

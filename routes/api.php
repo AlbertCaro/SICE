@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('todos', ['uses'=>'PersonController@obtenerTodosApi']);
+Route::get('student', ['uses' => 'PersonController@getAllAPI']);
