@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('student', ['uses' => 'PersonController@getAllAPI']);
+Route::post('buscar', ['uses'=>'PersonController@buscarAlumno']);

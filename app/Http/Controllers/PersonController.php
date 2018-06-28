@@ -236,4 +236,10 @@ class PersonController extends ApiController
         $people = Person::all();
         return $this->showAll($people);
     }
+
+    public function buscarAlumno(Request $request){
+        $alumno = Person::findOrFail($request['codigo']);
+
+        return $this->showOne($alumno);
+    }
 }
