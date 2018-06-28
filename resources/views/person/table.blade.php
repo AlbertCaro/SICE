@@ -27,11 +27,13 @@
                         <i class="material-icons">edit</i>
                     </button>
                 </a>
-                <a href="#" onclick="confirmDelete(event, '{{ $person->fullName }}', '{{ route('student.destroy', $person->codigo) }}')">
-                    <button type="button" class="btn btn-danger btn-fab" title="Eliminar">
-                        <i class="material-icons">delete_forever</i>
-                    </button>
-                </a>
+                @if(!isset($imported))
+                    <a href="#" onclick="confirmDelete(event, '{{ $person->fullName }}', '{{ route('student.destroy', $person->codigo) }}')">
+                        <button type="button" class="btn btn-danger btn-fab" title="Eliminar">
+                            <i class="material-icons">delete_forever</i>
+                        </button>
+                    </a>
+                @endif
             </td>
         </tr>
     @empty

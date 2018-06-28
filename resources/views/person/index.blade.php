@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
-@section('title', 'Usuarios')
+@section('title', 'Estudiantes')
 @section('type', 'profile-page sidebar-collapse')
 
 @section('content')
     <script type="text/javascript">
         let table = '{{ route('student.table') }}';
-        let search = '/person_search/';
+        let search = '/person/search/';
     </script>
     <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); ">
         <div class="container">

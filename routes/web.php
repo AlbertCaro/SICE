@@ -1,5 +1,8 @@
 <?php
 
+use \Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,26 +14,30 @@
 |
 */
 
+/**
+ * Rutas de los usuarios  (modelo User).
+ */
 Route::resource('user', 'UserController');
+Route::get('user/table', ['as' => 'user.table', 'uses' => 'UserController@table']);
+Route::get('user/search/{search}/', ['as' => 'user.search', 'uses' => 'UserController@search']);
+
+/**
+ * Rutas de los estudiantes (modelo Person)
+ */
 Route::resource('student', 'PersonController');
+Route::get('person/table', ['as' => 'student.table', 'uses' => 'PersonController@table']);
+Route::get('person/search/{search}/', ['as' => 'student.search', 'uses' => 'PersonController@search']);
+Route::get('/person/import', ['as' => 'student.import', 'uses' => 'PersonController@import']);
+Route::post('/person/imported', ['as' => 'student.importing', 'uses' => 'PersonController@importing']);
 
-Route::get('/', ['as' => 'index', function () {
-    return view('auth.home');
-}]);
-
+/**
+ * Rutas de sesión e index.
+ */
 Auth::routes();
-
-Route::get('/home', ['as' => 'home','uses' => 'HomeController@index']);
+// Ruta para el index
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::post('register', ['as' => 'register.create','uses' => 'Auth\RegisterController@register']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
-Route::get('user_table', ['as' => 'user.table', 'uses' => 'UserController@table']);
-Route::get('user_search/{search}/', ['as' => 'user.search', 'uses' => 'UserController@search']);
-Route::get('person_table', ['as' => 'student.table', 'uses' => 'PersonController@table']);
-Route::get('person_search/{search}/', ['as' => 'student.search', 'uses' => 'PersonController@search']);
-Route::get('/person/import', ['as' => 'student.import', 'uses' => 'PersonController@import']);
-Route::post('/person/import/do', ['as' => 'student.importing', 'uses' => 'PersonController@importing']);
 
-Route::get('message/done', ['as' => 'message.done', function () {
-    return view('messages.done');
-}]);
+
 

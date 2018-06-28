@@ -10,6 +10,7 @@ use App\PersonalData;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
@@ -174,24 +175,34 @@ class PersonController extends Controller
 
     public function importing(ImportRequest $request)
     {
+        $GLOBALS['people'] = array();
         $excel = App::make('excel');
-        $excel->load($request->file, function ($reader) {
+        $excel->load($request->file, function ($reader)
+        {
             $rows = $reader->get();
-            $rows->each(function ($row) {
-                $person = Person::create([
-                    'codigo' => $row->codigo,
-                    'apaterno' => $row->apepat,
-                    'amaterno' => $row->apemat,
-                    'nombre' => $row->nombre,
-                ]);
+            $rows->each(function ($row)
+            {
+                $exist = Person::find($row->codigo);
+                if (is_null($exist))
+                {
+                    $person = Person::create([
+                        'codigo' => $row->codigo,
+                        'apaterno' => $row->apepat,
+                        'amaterno' => $row->apemat,
+                        'nombre' => $row->nombre,
+                    ]);
 
-                $person->personalData->update([
-                    'carrera_id' => $row->carrera,
-                ]);
+                    $person->personalData->update([
+                        'carrera_id' => $row->carrera,
+                    ]);
+                    array_push($GLOBALS['people'], $person);
+                }
             });
         });
+        $people = new LengthAwarePaginator(collect($GLOBALS['people']), count($GLOBALS['people']), 15);
+        $imported = true;
         toast('Datos importados con éxito.', 'success', 'top');
-        return redirect()->route('student.index');
+        return view('person.imported', compact('people', 'imported'));
     }
 
     protected function buildFailedValidationResponse(Request $request, array $errors)
