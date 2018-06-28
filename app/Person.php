@@ -45,17 +45,17 @@ class Person extends Model
 
     public function getApaternoAttribute($value)
     {
-        return ucfirst(strtolower($value));
+        return utf8_decode(ucfirst(strtolower($value)));
     }
 
     public function getAmaternoAttribute($value)
     {
-        return ucfirst(strtolower($value));
+        return utf8_decode(ucwords(strtolower($value)));
     }
 
     public function getNombreAttribute($value)
     {
-        return ucfirst(strtolower($value));
+        return utf8_decode(ucwords(strtolower($value)));
     }
 
     public function getFecnacAttribute($value)
@@ -68,8 +68,9 @@ class Person extends Model
 
     public function getFullNameAttribute()
     {
-        return $this->apaterno.' '.$this->amaterno.' '.$this->nombre;
+        return utf8_decode($this->apaterno).' '.utf8_decode($this->amaterno).' '.utf8_decode($this->nombre);
     }
+
 
     public function personalData()
     {

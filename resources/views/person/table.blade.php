@@ -15,7 +15,7 @@
                 \Carbon\Carbon::setUtf8(true);
             @endphp
             <td class="text-center">{{$person->codigo}}</td>
-            <td class="text-center">{{$person->nombre . " " . $person->apaterno . " " . $person->amaterno }}</td>
+            <td class="text-center">{{$person->fullName }}</td>
             <td>
                 <a href="{{ route('student.show', $person->codigo) }}">
                     <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-fab" title="Detalles del usuario">

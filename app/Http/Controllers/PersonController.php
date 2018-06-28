@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Career;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\ImportRequest;
 use App\Http\Requests\PersonRequest;
 use App\Person;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
 
-class PersonController extends Controller
+class PersonController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -208,5 +209,12 @@ class PersonController extends Controller
     protected function buildFailedValidationResponse(Request $request, array $errors)
     {
         toast('Verifique la información ingresada.', 'error', 'top');
+    }
+
+    public function obtenerTodosApi(){
+        $personas = Person::all();
+
+
+        return $this->showAll($personas);
     }
 }
