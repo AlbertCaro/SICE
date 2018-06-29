@@ -179,6 +179,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 
