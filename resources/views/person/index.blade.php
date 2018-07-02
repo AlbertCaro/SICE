@@ -6,7 +6,7 @@
 @section('content')
     <script type="text/javascript">
         let table = '{{ route('student.table') }}';
-        let search = '/person/search/';
+        let search = '{{ url('person/search') }}';
     </script>
     <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); ">
         <div class="container">

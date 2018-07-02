@@ -14,13 +14,16 @@ use \Illuminate\Support\Facades\Auth;
 |
 */
 
+
+Route::resource('user', 'UserController');
+Route::resource('client', 'ClientController');
+Route::resource('student', 'PersonController');
+
 /**
  * Rutas de los usuarios  (modelo User).
  */
-Route::resource('user', 'UserController');
-
 // Ruta de la tabla de usuarios (para la paginación asíncrona)
-Route::get('user/table', ['as' => 'user.table', 'uses' => 'UserController@table']);
+Route::get('user_table', ['as' => 'user.table', 'uses' => 'UserController@table']);
 
 // Ruta para generar la tabla a partir de un parámetro de búsqueda (necesaria para la paginación y buscador)
 Route::get('user/search/{search}/', ['as' => 'user.search', 'uses' => 'UserController@search']);
@@ -28,7 +31,6 @@ Route::get('user/search/{search}/', ['as' => 'user.search', 'uses' => 'UserContr
 /**
  * Rutas de los estudiantes (modelo Person)
  */
-Route::resource('student', 'PersonController');
 
 // Ruta para generar la tabla (necesaria para la paginación asíncrona)
 Route::get('person/table', ['as' => 'student.table', 'uses' => 'PersonController@table']);
@@ -41,6 +43,16 @@ Route::get('/person/import', ['as' => 'student.import', 'uses' => 'PersonControl
 
 // Ruta para ingresar los datos de la hoja de cálculo y el despliegue de la vista con la tabla que muestra los importados.
 Route::post('/person/imported', ['as' => 'student.importing', 'uses' => 'PersonController@importing']);
+
+/**
+ * Rutas de los clientes de las APIs
+ */
+
+// Ruta para generar la tabla (necesaria para la paginación asíncrona)
+Route::get('client_table', ['as' => 'client.table', 'uses' => 'ClientController@table']);
+
+// Ruta para generar la tabla a partir de un parámetro de búsqueda (también necesaria para la paginación asíncrona)
+Route::get('client/search/{search}/', ['as' => 'client.search', 'uses' => 'ClientController@search']);
 
 /**
  * Rutas de sesión e index.

@@ -1,18 +1,18 @@
 @extends('layouts.main')
 
-@section('title', 'Usuarios')
+@section('title', 'Clientes')
 @section('type', 'profile-page sidebar-collapse')
 
 @section('content')
     <script type="text/javascript">
-        let table = '{{ route('user.table') }}';
-        let search = '{{ url('user/search') }}';
+        let table = '{{ route('client.table') }}';
+        let search = '{{ url('client/search') }}';
     </script>
-    <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{ asset('assets/img/kit/cita2.jpg') }}); ">
+    <div id="top" class="page-header header-filter" data-parallax="true" style=" background-image: url({{URL::asset('assets/img/kit/cita2.jpg')}}); ">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="title">Usuarios</h1>
+                    <h1 class="title">Clientes</h1>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="section text-center">
                 @include('layouts.search')
                 <div id="content">
-                    @include('user.table')
+                    @include('client.table')
                 </div>
             </div>
         </div>

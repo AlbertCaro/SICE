@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 
 <head>
     <meta charset="utf-8">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/material-kit.css?v=2.0.2') }}">
     <script src="{{ asset("assets/js/core/jquery.min.js") }}"></script>
+    <script src="{{ asset("assets/js/core/jquery.min.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/moment.min.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/transition.js") }}"></script>
     <script src="{{ asset("assets/js/plugins/collapse.js") }}"></script>
@@ -27,6 +28,7 @@
 </head>
 
 <body class="@yield('type') ">
+<div id="app"></div>
 <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg bg-dark" color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
@@ -58,6 +60,19 @@
                             <i class="material-icons">cloud_upload</i> Importar
                         </a>
                         <a href="{{ route('student.index') }}" class="dropdown-item">
+                            <i class="material-icons">list</i> Consultar
+                        </a>
+                    </div>
+                </li>
+                    <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">code</i> API
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="{{ route('student.create') }}" class="dropdown-item">
+                            <i class="material-icons">add</i> Registrar
+                        </a>
+                        <a href="{{ route('client.index') }}" class="dropdown-item">
                             <i class="material-icons">list</i> Consultar
                         </a>
                     </div>
@@ -131,6 +146,7 @@
     </div>
 </footer>
 @include('sweetalert::alert')
+<script src="{{ asset("js/app.js") }}"></script>
 <!--   Core JS Files   -->
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-material-design.js') }}"></script>

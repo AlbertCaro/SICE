@@ -18,7 +18,7 @@ function loadTable(e, doSearch) {
     e.preventDefault();
     var param = $('#search').val();
     if (doSearch && param !== "")
-        currentUrl = search+param+'/';
+        currentUrl = search+'/'+param+'/';
     else
         currentUrl = table;
     $.ajaxSetup({
