@@ -14,13 +14,23 @@
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
     "gulp": "^3.9.1",
-    "jquery": "^3.1.1",
+    "jquery": "^3.3.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "bootstrap-material-design": "^4.1.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "jquery-collapse": "^1.1.2",
+    "material-kit": "^2.0.4",
+    "moment": "^2.22.2",
     "node-sass": "^4.9.0",
-    "sweetalert2": "^7.22.2"
+    "nouislider": "^11.1.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.14.3",
+    "sweetalert2": "^7.22.2",
+    "transition": "^0.1.1",
+    "vue-resource": "^1.5.1"
   }
 }

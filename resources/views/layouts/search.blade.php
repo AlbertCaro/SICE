@@ -10,7 +10,7 @@
         </div>
         <div class="form-group col-1">
             <br>
-            <input type="submit" class="btn btn-primary btn-sm" value="Buscar" onclick="loadTable(event, true);">
+            <input type="submit" class="btn btn-primary btn-sm" value="Buscar" @submit.prevent="prueba()">
         </div>
     </div>
 </form>
