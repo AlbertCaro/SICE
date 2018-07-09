@@ -84,7 +84,7 @@
                 <li class="dropdown nav-item">
                     <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile-photo-small">
-                            <img src="http://www.cuvalles.udg.mx/spec/Fotos/{{ auth()->user()->name }}.jpg"
+                            <img src="http://148.202.89.11/spec/Fotos/{{ strtoupper(auth()->user()->name) }}.jpg"
                                  onerror="this.src='{{ asset('assets/img/blank_user.png') }}';"
                                  style="object-fit: cover; object-position: center; height: 40px; width: 40px"
                                  alt="Circle Image" class="rounded-circle img-fluid">

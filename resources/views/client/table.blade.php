@@ -17,7 +17,7 @@
             <td class="text-center">{{$client->name}}</td>
             <td class="text-center">{{$client->secret }}</td>
             <td>
-                <a href="{{ route('student.show', $client->id) }}">
+                <a href="{{ route('client.show', $client) }}">
                     <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-fab" title="Detalles del usuario">
                         <i class="material-icons">more_vert</i>
                     </button>
