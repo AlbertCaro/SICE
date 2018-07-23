@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::with('client')->paginate(10);
         return view('user.index', compact('users'));
     }
 
@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('client')->findOrFail($id);
         return view('user.show', compact('user'));
     }
 
@@ -57,7 +57,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('client')->findOrFail($id);
         return view('user.edit', compact('user'));
     }
 
@@ -80,9 +80,7 @@ class UserController extends Controller
             $this->validate($request, [
                 'password'=>'required|min:6|max:191|confirmed'
             ]);
-            $data = $data + [
-                'password' => bcrypt($request->password)
-                ];
+            $data = $data + ['password' => $request->password];
         }
 
         $user = User::findOrFail($id);

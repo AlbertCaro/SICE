@@ -26,16 +26,53 @@
                 </div>
                 <div id="content">
                     <div class="description text-center">
+                        <h6 style="color: #3C4858;">Creado el:</h6>
                         <p>
-                            Usuario creado el: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/>
-                            Última modificación el: {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y \a \l\a\s h:m:s a') }} <br/><br/>
-                            <a href="{{ route('user.edit', $user->id) }}">
-                                <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-success" title="Editar">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                            </a>
+                            {{ $user->created_at }}
                         </p>
+                        <h6 style="color: #3C4858;">Última modificación el:</h6>
+                        <p>
+                            {{ $user->updated_at }}
+                        </p>
+                        <a href="{{ route('user.edit', $user->id) }}">
+                            <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-success" title="Editar">
+                                <i class="material-icons">edit</i>
+                            </button>
+                        </a>
+                        <a onclick="deleteInShow(event, '{{ $user->name }}', '{{ route('user.destroy', $user->id) }}', '{{ route('user.index') }}');">
+                            <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-danger" title="Eliminar">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
                     </div>
+                    @if(is_null($user->client))
+                        <div class="col-md-12 text-center">
+                            <div class="info">
+                                <h4>Este usuario no tiene cliente oauth.</h4>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-12 text-center">
+                            <div class="info">
+                                <div class="icon icon-info text-center">
+                                    <i class="material-icons">code</i>
+                                </div>
+                                <h4 class="info-title text-center">Información del alumno:</h4>
+                                <h6>Clave secreta:</h6>
+                                <p>
+                                    {{ $user->client->secret }}
+                                </p>
+                                <h6>Creado el:</h6>
+                                <p>
+                                    {{ $user->client->created_at }}
+                                </p>
+                                <h6>Última modificación el:</h6>
+                                <p>
+                                    {{ $user->client->updated_at }}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <br>
             </div>

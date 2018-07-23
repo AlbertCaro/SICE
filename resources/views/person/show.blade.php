@@ -99,6 +99,11 @@
                                 <i class="material-icons">edit</i>
                             </button>
                         </a>
+                        <a href="#" onclick="deleteInShow(event, '{{ $person->name }}', '{{ route('student.destroy', $person->codigo) }}', '{{ route('student.index') }}')">
+                            <button type="button" class="btn btn-danger" title="Eliminar">
+                                <i class="material-icons">delete_forever</i>
+                            </button>
+                        </a>
                     </p>
                 </div>
                 <br>

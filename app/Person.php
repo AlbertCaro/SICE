@@ -71,7 +71,6 @@ class Person extends Model
         return utf8_decode($this->apaterno).' '.utf8_decode($this->amaterno).' '.utf8_decode($this->nombre);
     }
 
-
     public function personalData()
     {
         return $this->hasOne(PersonalData::class, 'persona_codigo', 'codigo');

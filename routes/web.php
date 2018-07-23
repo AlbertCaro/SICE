@@ -54,6 +54,9 @@ Route::get('client_table', ['as' => 'client.table', 'uses' => 'ClientController@
 // Ruta para generar la tabla a partir de un parámetro de búsqueda (también necesaria para la paginación asíncrona)
 Route::get('client/search/{search}/', ['as' => 'client.search', 'uses' => 'ClientController@search']);
 
+// Ruta para revocar acceso al cliente
+Route::get('client/revoke/{client}', ['as' => 'client.revoke', 'uses' => 'ClientController@revoke']);
+
 /**
  * Rutas de sesión e index.
  */
@@ -61,9 +64,6 @@ Auth::routes();
 
 // Ruta para el index
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-
-// Ruta del formulario para registrar un nuevo usuario
-Route::post('register', ['as' => 'register.create','uses' => 'Auth\RegisterController@register']);
 
 // Ruta para cerrar sesión
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);

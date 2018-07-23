@@ -22,7 +22,7 @@
                         <i class="material-icons">more_vert</i>
                     </button>
                 </a>
-                <a href="{{ route('student.edit', $client->id) }}">
+                <a href="{{ route('client.edit', $client) }}">
                     <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-fab" title="Editar">
                         <i class="material-icons">edit</i>
                     </button>

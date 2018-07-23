@@ -13,7 +13,7 @@
                         <div class="card-body text-center">
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto">
-                                    <form id="registrar_form" class="form" method="POST" action="{{ route('register') }}">
+                                    <form id="registrar_form" class="form" method="POST" action="{{ url('register') }}">
                                         {{ csrf_field() }}
                                         <div class="row text-left">
                                             <div class="col-sm-6">

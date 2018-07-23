@@ -13,6 +13,14 @@
                         <div class="card-body text-center">
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto">
+                                    <div class="description">
+                                        <p>
+                                            Para importar archivos se requiere que estos estén en formato xlsx o xls.
+                                            Además se tiene que contar con los campos con la información del código,
+                                            nombre, ambos apellidos y su respectiva carrera, nombrados como "codigo",
+                                            "nombre", "apepat", "apemat" y "carrera", respectivamente.
+                                        </p>
+                                    </div>
                                     <form id="busqueda_form" class="form-horizontal" name="form_busqueda" enctype="multipart/form-data"
                                           method="post" action="{{ route('student.importing') }}">
                                         {{ csrf_field() }}

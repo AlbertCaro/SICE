@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
@@ -28,4 +29,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function setCreatedAtAttribute($value)
+    {
+        return Carbon::make($value)->format('Y-m-d H:i:s');
+    }
+
+    public function setUpdatedAtAttribute($value)
+    {
+        return Carbon::make($value)->format('Y-m-d H:i:s');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::make($value)->format('d/m/Y \a \l\a\s h:m:s a');
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::make($value)->format('d/m/Y \a \l\a\s h:m:s a');
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'user_id', 'id');
+    }
 }

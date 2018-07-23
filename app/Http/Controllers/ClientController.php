@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Laravel\Passport\Client;
+use App\Client;
+use App\Http\Requests\ClientRequest;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -14,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(10);
+        $clients = Client::with('user')->paginate(10);
         return view('client.index', compact('clients'));
     }
 
@@ -25,24 +27,27 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('client.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        Client::create([
+            'name' => $request->name,
+            'redirect' => $request->redirect
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Laravel\Passport\Client  $client
+     * @param Client $client
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
@@ -53,50 +58,63 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Laravel\Passport\Client  $client
+     * @param Client $client
      * @return \Illuminate\Http\Response
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Laravel\Passport\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param ClientRequest $request
+     * @param Client $client
+     * @return Response
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientRequest $request, Client $client)
     {
-        //
+        $client->update($request->all());
+        toast('Actualizado correctamente', 'success', 'top');
+        return redirect()->route('client.show', compact('client'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Laravel\Passport\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param  \App\Client $client
+     * @return void
+     * @throws \Exception
      */
     public function destroy(Client $client)
     {
         $client->delete();
     }
 
-
-
     public function table()
     {
-        $clients = Client::paginate(10);
+        $clients = Client::with('user')->paginate(10);
         return view('client.table', compact('clients'));
     }
 
     public function search(Request $request)
     {
-        $clients = Client::where('name','LIKE', "%{$request->search}%")
+        $clients = Client::with('user')->where('name','LIKE', "%{$request->search}%")
             ->paginate(10);
         return view('client.table', compact('clients'));
+    }
+
+    public function revoke(Client $client)
+    {
+        if ($client->revoked === 0) {
+            $client->update(['revoked' => 1]);
+            toast('Acceso revocado', 'success', 'top');
+        } else {
+            $client->update(['revoked' => 0]);
+            toast('Acceso concedido', 'success', 'top');
+        }
+        return redirect()->route('client.show', $client);
     }
 
     protected function buildFailedValidationResponse(Request $request, array $errors)

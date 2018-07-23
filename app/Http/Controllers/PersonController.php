@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class PersonController extends ApiController
 {
+    public function __construct()
+    {
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +26,7 @@ class PersonController extends ApiController
      */
     public function index()
     {
-        $people = Person::paginate(15);
-        $people->withPath('student');
+        $people = Person::with('personalData')->paginate(15);
         return view('person.index', compact('people'));
     }
 
@@ -79,12 +83,12 @@ class PersonController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $person = Person::findOrFail($id);
+        $person = Person::with('personalData')->findOrFail($id);
         return view('person.show', compact('person'));
     }
 
@@ -96,7 +100,7 @@ class PersonController extends ApiController
      */
     public function edit($id)
     {
-        $person = Person::findOrFail($id);
+        $person = Person::with('personalData')->findOrFail($id);
         return view('person.edit', compact('person'));
     }
 
@@ -109,7 +113,7 @@ class PersonController extends ApiController
      */
     public function update(PersonRequest $request, $id)
     {
-        $person = Person::findOrFail($id);
+        $person = Person::with('personalData')->findOrFail($id);
         $personalData = $person->personalData;
         $person->update([
             'nombre' => $request->nombre,
@@ -139,12 +143,13 @@ class PersonController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return void
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $person = Person::findOrFail($id);
+        $person = Person::with('personalData')->findOrFail($id);
 
         $data = $person->personalData;
         $data->delete();
@@ -153,13 +158,13 @@ class PersonController extends ApiController
 
     public function table()
     {
-        $people = Person::paginate(15);
+        $people = Person::with('personalData')->paginate(15);
         return view('person.table', compact('people'));
     }
 
     public function search(Request $request)
     {
-        $people = Person::where('codigo', 'LIKE', "%{$request->search}%")
+        $people = Person::with('personalData')->where('codigo', 'LIKE', "%{$request->search}%")
             ->orWhere(DB::raw('CONCAT(nombre," ",apaterno," ",amaterno)'), 'LIKE', "%{$request->search}%")
             ->paginate(15);
         return view('person.table', compact('people'));
@@ -182,11 +187,11 @@ class PersonController extends ApiController
             $rows = $reader->get();
             $rows->each(function ($row)
             {
-                $exist = Person::find($row->codigo);
+                $exist = Person::with('personalData')->find($row->codigo);
 
                 if (is_null($exist) && $row->codigo !== "" && $row->carrera !== "")
                 {
-                    $person = Person::create([
+                    $person = Person::with('personalData')->create([
                         'codigo' => $row->codigo,
                         'apaterno' => $row->apepat,
                         'amaterno' => $row->apemat,

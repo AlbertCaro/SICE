@@ -60,7 +60,7 @@
                         <i class="material-icons">code</i> API
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                        <a href="{{ route('student.create') }}" class="dropdown-item">
+                        <a href="{{ route('client.create') }}" class="dropdown-item">
                             <i class="material-icons">add</i> Registrar
                         </a>
                         <a href="{{ route('client.index') }}" class="dropdown-item">
@@ -136,14 +136,24 @@
         </div>
     </div>
 </footer>
-
-<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-<script src="{{ asset("js/app.js") }}"></script>
-<script src="{{ asset('assets/js/messages.js') }}"></script>
 <!--   Core JS Files   -->
+<script src="{{ asset("assets/js/core/jquery.min.js") }}"></script>
+<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-material-design.js') }}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="{{ asset("assets/js/plugins/moment.min.js") }}"></script>
+<script src="{{ asset("assets/js/plugins/transition.js") }}"></script>
+<script src="{{ asset("assets/js/plugins/collapse.js") }}"></script>
+<script src="{{ asset("assets/js/plugins/nouislider.min.js") }}"></script>
+<script src="{{ asset("assets/js/plugins/bootstrap-datetimepicker.min.js") }}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="{{ asset('assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{{ asset('assets/js/plugins/nouislider.min.js') }}"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="{{ asset('assets/js/material-kit.js?v=2.0.2')}} "></script>
+<script src="https://unpkg.com/sweetalert2@7.22.2/dist/sweetalert2.all.js"></script>
+<script src="{{ asset('assets/js/messages.js') }}"></script>
 @include('sweetalert::alert')
 </body>
 </html>

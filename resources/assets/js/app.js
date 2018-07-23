@@ -8,12 +8,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-window.swal = require('sweetalert2');
-window.jQuery = require('jquery');
-window.transition = require('transition');
-window.moment = require('moment');
-window.datepickerInput = require('eonasdan-bootstrap-datetimepicker');
-window.noUiSlider = require('nouislider');
 window.VueResource = require('vue-resource');
 Vue.use(VueResource);
 
@@ -24,20 +18,6 @@ Vue.use(VueResource);
  */
 
 Vue.component('example', require('./components/Example.vue'));
-
-const swalMaterial = swal.mixin({
-    confirmButtonClass: 'btn btn-success',
-    cancelButtonClass: 'btn btn-danger',
-    buttonsStyling: false,
-});
-
-const toast = swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 3000,
-    showCloseButton: true
-});
 
 const app = new Vue({
     el: '#app',
