@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('client')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('student', ['uses' => 'PersonController@getAllAPI']);
-Route::post('student/search', ['uses'=>'PersonController@searchAPI']);
+Route::middleware('client')->get('student', ['uses' => 'PersonController@getAllAPI']);
+Route::middleware('client')->post('student/search', ['uses'=>'PersonController@searchAPI']);
