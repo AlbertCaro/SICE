@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('client')->paginate(10);
+        $users = User::with('clients')->paginate(10);
         return view('user.index', compact('users'));
     }
 
@@ -45,8 +47,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with('client')->findOrFail($id);
-        return view('user.show', compact('user'));
+        $user = User::with('clients')->findOrFail($id);
+        $clients = new LengthAwarePaginator($user->clients, count($user->clients), 15);
+        return view('user.show', compact('user', 'clients'));
     }
 
     /**
@@ -93,12 +96,17 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
+        } catch (ModelNotFoundException $exception) {
+
+        }
+
         $user->delete();
     }
 

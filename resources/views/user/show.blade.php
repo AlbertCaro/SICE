@@ -4,6 +4,10 @@
 @section('type', 'profile-page sidebar-collapse')
 
 @section('content')
+    <script type="text/javascript">
+        let table = '{{ route('client.table') }}';
+        let search = '{{ url('client/search') }}';
+    </script>
     <div class="page-header header-filter" data-parallax="true" style=" background-image: url('../assets/img/kit/cita.jpg'); "></div>
     <div class="main main-raised">
         <div class="profile-content">
@@ -45,37 +49,24 @@
                             </button>
                         </a>
                     </div>
-                    @if(is_null($user->client))
-                        <div class="col-md-12 text-center">
-                            <div class="info">
-                                <h4>Este usuario no tiene cliente oauth.</h4>
-                            </div>
-                        </div>
-                    @else
-                        <div class="col-md-12 text-center">
-                            <div class="info">
-                                <div class="icon icon-info text-center">
-                                    <i class="material-icons">code</i>
-                                </div>
-                                <h4 class="info-title text-center">Información del alumno:</h4>
-                                <h6>Clave secreta:</h6>
-                                <p>
-                                    {{ $user->client->secret }}
-                                </p>
-                                <h6>Creado el:</h6>
-                                <p>
-                                    {{ $user->client->created_at }}
-                                </p>
-                                <h6>Última modificación el:</h6>
-                                <p>
-                                    {{ $user->client->updated_at }}
-                                </p>
-                            </div>
-                        </div>
-                    @endif
+
                 </div>
+                @if(is_null($clients))
+                    <div class="info">
+                        <h4>Este usuario no tiene cliente oauth.</h4>
+                    </div>
+                @else
+                    <div class="info">
+                        <div class="icon icon-info text-center">
+                            <i class="material-icons">code</i>
+                        </div>
+                        <h4 class="info-title text-center">Clientes:</h4>
+                    </div>
+                    @include('client.table')
+                @endif
                 <br>
             </div>
         </div>
     </div>
+    <script src="{{ asset('assets/js/pagination.js') }}"></script>
 @stop

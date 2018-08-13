@@ -54,8 +54,8 @@ class User extends Authenticatable
         return Carbon::make($value)->format('d/m/Y \a \l\a\s h:m:s a');
     }
 
-    public function client()
+    public function clients()
     {
-        return $this->hasOne(Client::class, 'user_id', 'id');
+        return $this->hasMany(Client::class, 'user_id', 'id');
     }
 }
