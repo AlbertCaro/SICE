@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="content">
+                <div>
                     <div class="description text-center">
                         <h6 style="color: #3C4858;">Creado el:</h6>
                         <p>
@@ -51,19 +51,17 @@
                     </div>
 
                 </div>
-                @if(is_null($clients))
-                    <div class="info">
-                        <h4>Este usuario no tiene cliente oauth.</h4>
-                    </div>
+                <div id="content" class="info" align="center">
+                @if(count($clients) == 0)
+                    <h4>Este usuario no tiene cliente oauth.</h4>
                 @else
-                    <div class="info">
-                        <div class="icon icon-info text-center">
-                            <i class="material-icons">code</i>
-                        </div>
-                        <h4 class="info-title text-center">Clientes:</h4>
+                    <div class="icon icon-info text-center">
+                        <i class="material-icons">code</i>
                     </div>
+                    <h4 class="info-title text-center">Clientes:</h4>
                     @include('client.table')
                 @endif
+                </div>
                 <br>
             </div>
         </div>
