@@ -24,9 +24,17 @@
                                     <i class="material-icons">code</i>
                                 </div>
                                 <h4 class="info-title text-center">Información del cliente:</h4>
+                                <h6>ID: </h6>
+                                <p>
+                                    {{ $client->id }}
+                                </p>
                                 <h6>Usuario: </h6>
                                 <p>
-                                    {{ $client->user->name }}
+                                    @if(empty($client->user->name))
+                                        {{ 'N/A' }}
+                                    @else
+                                        {{ $client->user->name }}
+                                    @endif
                                 </p>
                                 <h6>Redirecciona a:</h6>
                                 <p>

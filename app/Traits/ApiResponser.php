@@ -19,11 +19,11 @@ trait ApiResponser
 
     protected function showAll(Collection $collection, $code = 200)
     {
-        return $this->successResponse(['data'=>$collection], $code);
+        return $this->successResponse($collection, $code);
     }
 
     protected function showOne(Model $instance, $code = 200)
     {
-        return $this->successResponse(['data'=>$instance], $code);
+        return $this->successResponse($instance, $code);
     }
 }

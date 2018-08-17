@@ -2,6 +2,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th class="text-center">ID</th>
         <th class="text-center">Nombre</th>
         <th>Clave secreta</th>
         <th class="text-center">Acciones</th>
@@ -14,6 +15,7 @@
                 setlocale(LC_TIME,'Spanish');
                 \Carbon\Carbon::setUtf8(true);
             @endphp
+            <td class="text-center">{{$client->id}}</td>
             <td class="text-center">{{$client->name}}</td>
             <td class="text-center">{{$client->secret }}</td>
             <td>

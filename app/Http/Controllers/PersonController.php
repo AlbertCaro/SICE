@@ -244,7 +244,8 @@ class PersonController extends ApiController
 
     public function searchAPI(Request $request)
     {
-        $person = Person::findOrFail($request->codigo);
+        $person = Person::with('personalData')->findOrFail($request->codigo);
+        $career = $person->personalData->career;
         return $this->showOne($person);
     }
 }
